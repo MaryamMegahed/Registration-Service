@@ -29,11 +29,7 @@ export const getAllUsersByRole = async (req: Request, res: Response) => {
       const roleMembers = await prisma.user.findMany({
         where: {
           Role: role,
-        },include: {
-            Patient: role=='Patient'?true:false,
-            Doctor:role=='Doctor'?true:false,
-            Admin:role=='Admin'?true:false,
-          },
+        }
       });
   
       res.status(200).json({ data: roleMembers });
@@ -54,10 +50,6 @@ export const getUserById = async (req: Request, res: Response) => {
     const userMember = await prisma.user.findUnique({
       where: {
         UserID: parseInt(userID),
-      },include: {
-        Patient: true,
-        Doctor:true,
-        Admin:true,
       },
     });
 

@@ -38,10 +38,7 @@ export const updatePatient = async (req: Request, res: Response) => {
       data: {
         ...patientData,
         Role: 'Patient',
-      },
-      include: {
-        Patient: true,
-      },
+      }
     });
 
     res.status(200).json({ data: updatedPatient });
@@ -64,9 +61,6 @@ export const getPatientById = async (req: Request, res: Response) => {
       where: {
         UserID: parseInt(userID),
         Role: 'Patient',
-      },
-      include: {
-        Patient: true,
       },
     });
 
@@ -94,8 +88,6 @@ export const deletePatient = async (req: Request, res: Response) => {
       where: {
         UserID: parseInt(userID),
         Role: 'Patient',
-      },include: {
-        Patient: true,
       },
     });
 
