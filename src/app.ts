@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express, { Request, Response } from 'express';
 
 import userRouter from './routers/userRouter';
