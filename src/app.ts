@@ -1,9 +1,9 @@
 
 import express from 'express';
-import staffRouter from './src/routers/staffRouter';
-import userRouter from './src/routers/userRouter';
-import patientRouter from './src/routers/patientRouter';
-import { loginUser } from './src/controllers/loginController';
+import staffRouter from './routers/staffRouter';
+import userRouter from './routers/userRouter';
+import patientRouter from './routers/patientRouter';
+import { loginUser } from './controllers/loginController';
 
 const app = express();
 const port = process.env.PORT || 10000;
