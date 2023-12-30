@@ -96,7 +96,7 @@ export const createStaff = async (req: Request, res: Response) => {
       !userData.phoneNumber||!userData.role||!userData.password||!userData.userName) {
       throw new Error('Missing required data');
     }
-    else if(!validate.isValidClinicId(userData.clinicId))
+    else if(!validate.clinicIdValidation(userData.clinicId))
     {
       throw new Error('clinicId musnt be from 1 to 5');
     }
