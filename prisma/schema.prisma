@@ -6,26 +6,26 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  userId                 Int       @id @default(autoincrement())
+  userId                 Int      @id @default(autoincrement())
   gender                 String
   firstName              String
   lastName               String
-  dateOfBirth            DateTime? @db.Date()
-  email                  String    @unique
+  dateOfBirth            String
+  email                  String   @unique
   phoneNumber            String
   role                   String
-  ssn                    String    @unique
+  ssn                    String   @unique
   password               String
-  userName               String    @unique
+  userName               String   @unique
   insurancePersentage    Float?
   emergencyContactName   String?
   emergencyContactNumber String?
   specialization         String?
   clinicId               Int?
-  createdAt              DateTime  @default(now())
+  createdAt              DateTime @default(now())
 }

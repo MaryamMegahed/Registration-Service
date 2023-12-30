@@ -32,7 +32,7 @@ export function hasCapitalizedCharacter(inputString:string):boolean {
 export const createPatient = async (req: Request, res: Response) => {
   const patientData = req.body;
   try {
-    if(patientData.role!="Patient"){
+    if(patientData.role!='Patient'){
       throw new Error('Invalid role or unmatched data');
     }
     else if(!patientData.gender || !patientData.firstName||!patientData.lastName||!patientData.email||
