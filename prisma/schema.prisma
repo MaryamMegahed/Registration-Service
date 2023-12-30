@@ -27,4 +27,5 @@ model User {
   emergencyContactNumber String?
   specialization         String?
   clinicId               Int?
+  createdAt              DateTime  @default(now())
 }
