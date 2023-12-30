@@ -33,6 +33,12 @@ export function ssnValidation(inputSSN: string) :boolean {
     return /^\d{14}$/.test(inputSSN);
 }
 
+//-----------------------clinicId Validation-------------------------------
+export function isValidClinicId(clinicId: number):boolean {
+  // Check if clinicId is a number and within the range 1 to 5
+  return clinicId >= 1 && clinicId <= 5;
+}
+
 //-----------------------Date Format Validation--------------------------------
 export function isValidDateFormat(inputDate: string): boolean {
     // const dateFormatPattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -40,7 +46,6 @@ export function isValidDateFormat(inputDate: string): boolean {
 
     return dateFormatPattern.test(inputDate);
 }
-
 
 export function handleErrors (error: any, res: Response): void {
   console.error(error);
@@ -63,6 +68,10 @@ const validateUsertData = async (userData: any) => {
   else if (userData.dateOfBirth && !isValidDateFormat(userData.dateOfBirth)) {
     throw new Error('Check that you entered the right birthdate and in this format: YYYY-MM-DD');
   } 
+  else if(userData.clinicId && !isValidClinicId(userData.clinicId))
+  {
+    throw new Error('clinicId musnt be from 1 to 5');
+  }
   else if (userData.password) {
     // Hash the new password using your hashPassword function
     if(hasCapitalizedCharacter(userData.password)==false){
