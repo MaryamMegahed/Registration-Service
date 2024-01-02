@@ -29,14 +29,19 @@ export function hasCapitalizedCharacter(inputString:string):boolean {
 }
 
 //-----------------------SSN Validation--------------------------------
+
 export function ssnValidation(inputSSN: string) :boolean {
-  return /^\d{14}$/.test(inputSSN);
+  const ssnFormat = /^\d{14}$/
+  if (inputSSN && inputSSN.length === 14 && ssnFormat.test(inputSSN))
+    return true
+  else
+    return false
 }
 
 //-----------------------clinicId Validation-------------------------------
 export function clinicIdValidation(clinicId: number):boolean {
-  // Check if clinicId is a number and within the range 1 to 5
-  return clinicId >= 1 && clinicId <= 5;
+  // Check if clinicId is a number and within the range 13 to 18
+  return clinicId >= 13 && clinicId <= 15;
 }
 
 //-----------------------Date Format Validation--------------------------------
@@ -47,13 +52,9 @@ export function dateFormatValidation(inputDate: string): boolean {
 
 //-----------------------Email Validation--------------------------------
 export function emailValidation(email: string): boolean {
-  // const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+(\.[^\s@]+)?\.com$/;
-  // return emailPattern.test(email);
   const emailPattern = /^[^\s@]+@[^\s@]+\.com$/;
   return emailPattern.test(email);
 }
-
-
 //----------------------- Phone Number Validation--------------------------------
 export function phoneValidation(phoneNumber: string): boolean {
   const phonePattern = /^(\+20|0020)\d{10}$/;
@@ -61,7 +62,6 @@ export function phoneValidation(phoneNumber: string): boolean {
 }
 
 //------------------------ Error Handling ---------------------------------------
-
 export function handleErrors (error: any, res: Response): void {
   console.error(error);
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -85,10 +85,11 @@ const validateUsertData = async (userData: any) => {
     throw new Error('Check that you entered the right birthdate and in this format: YYYY-MM-DD');
   } 
 
-  else if(userData.clinicId && !clinicIdValidation(userData.clinicId))
+  else if(userData.clinicId && !clinicIdValidation(userData.clinicId) && userData.role =="Doctor")
   {
     throw new Error('clinicId musnt be from 1 to 5');
   }
+
   else if(userData.email && !emailValidation(userData.email)){
     throw new Error('Please check if this mail is correct');
   }
